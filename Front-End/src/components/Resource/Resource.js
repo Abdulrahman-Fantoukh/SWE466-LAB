@@ -59,6 +59,11 @@ class Resource extends Component {
             this.props.removeResources(resource, this.props.projectInContext)
         )
     }
+    renderCreateResourceButton = () => {
+        return(
+            <AddResource/>
+        )
+    }
     render(){
             let resources = this.props.projectInContext.resources.length ? (
                 <div>
@@ -83,7 +88,7 @@ class Resource extends Component {
                             </tbody>
                         </table>
                     </div>
-                    <AddResource/>
+                    {this.renderCreateResourceButton()}
                     <div id="footer"></div>
                 </div>
     
@@ -91,22 +96,17 @@ class Resource extends Component {
                     <div>
                         <Navbar />
                         <ProjectSubBar />
-                        <AddResource/>
+                        <img className="noTasks" src={require('../../images/No-Tasks.png')} width="350" height="350" />
+                        <div id="footer">
+                            <AddResource/>
+                        </div>
                     </div>
                 )
             return (
                 resources
             )
     }
-            /* <div>
-                <Navbar />
-                <ProjectSideBar />
-            <p>here are the resources</p>
-            <div>
-                {this.renderResources()}
-            </div>
-            <AddResource/>
-</div> */}
+}
 const mapStateToProps = (state) => {
     return {
         projectInContext: state.projectInContext,

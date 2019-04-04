@@ -254,18 +254,18 @@ class ModifyTask extends Component {
                             {this.state.durationAlert}
                             <div class="modal-body">
                                 <div class="form-group">
+                                    <form onSubmit={this.handleChange}>
                                     <label for="name">Task name</label>
                                     <input type="text" class="form-control" id="name" placeholder={this.props.task.name} onChange={this.handleChange} required />
-
-
                                     <div className="centered">
                                         <label className="label" htmlFor="startDate">Start Date: </label>
                                         <DatePicker className="form-control" selected={this.state.startDate} onChange={this.handleStartDateChange} /><br /><br />
                                         <label className="label" htmlFor="endDate">End Date: </label>
                                         <DatePicker className="form-control" selected={this.state.endDate} onChange={this.handleEndDateChange} /><br /><br />
                                         <label className="label" htmlFor="Duration">Duration: </label>
-                                        <input id="duration" onChange={this.handleChange} required readOnly value={this.state.duration}/>
+                                        <input id="duration" required readOnly value={this.state.duration}/>
                                     </div>
+                                    </form>
                                 </div>
                                 <div className="row">
                                     <div className="col align-self-end">
@@ -283,10 +283,7 @@ class ModifyTask extends Component {
                                     {this.renderAssignedResources()}
                                 </div>
                                 <hr />
-
                                 {this.renderDependencies()}
-
-
                                 <div className="row">
                                     <div className="col-12">
                                         <div class="dropdown">

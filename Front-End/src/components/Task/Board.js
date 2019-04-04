@@ -19,7 +19,7 @@ class Board extends Component {
         })
     }
     handleDelete = (task_id) => {
-        this.props.deleteTask(task_id, this.props.projectInContext._id)
+        this.props.deleteTask(task_id, this.props.projectInContext)
     }
     renderDeleteTask = (task) => {
         return (
@@ -182,7 +182,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteTask: (task_id, PID) => dispatch(deleteTask(task_id, PID)),
+        deleteTask: (task_id, project) => dispatch(deleteTask(task_id, project)),
         submitTask: (payload) => dispatch(submitTask(payload)),
     }
 }
