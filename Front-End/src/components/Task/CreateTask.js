@@ -15,7 +15,7 @@ class CreateTask extends Component {
         }
       }
 
-      handleStartDateChange = (date) => {//for DATEPICKER
+      handleStartDateChange = (date) => {   //for DATEPICKER
             this.setState({
                 startDate: date
             });

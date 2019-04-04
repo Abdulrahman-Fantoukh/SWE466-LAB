@@ -17,11 +17,12 @@ export const addResource = (resource, project, userInfo) => {
     }
 }
 
-export const removeResources = (project, member) => {
-    console.log("remove action here")
+export const removeResources = (resource, project) => {
+    console.log(resource,"remove action here")
+    console.log(project,"OJ")
     return (dispatch, getState) => {
-        const payload = { project, member }
-        axios.post('http://localhost:3333/project/removeResources', { project, member }).then((res) => {
+        const payload = { resource, project }   //Change to resource
+        axios.post('http://localhost:3333/project/removeResources', { payload }).then((res) => {
             dispatch({ type: "REMOVE_RESOURCE", payload })
             console.log(res)
         })

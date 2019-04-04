@@ -37,7 +37,8 @@ projectRoute.post('/deleteproject', function (req, res) {
 })
 
 projectRoute.post('/removeResources', function (req, res) {
-    mongoose.model("projects").findByIdAndUpdate(req.body.project._id, { $pull: { "resources": { _id: req.body.resource._id } } }).then(function (record) {
+    console.log("IN ROUTES")
+    mongoose.model("projects").findByIdAndUpdate(req.body.payload.project._id, { $pull: { "resources": { _id: req.body.payload.resource._id }}}, {new:true}).then(function (record) {
         res.status(200).send(record)
     }).catch(function (err) {
         console.log(err)

@@ -62,9 +62,9 @@ class AddResource extends Component {
                                     </div>
                                     <div class="form-group">
                                         <label>Resource type: </label>
-                                        <select name="kind" id="kind">
+                                        <select name="kind" id="kind" onChange={this.handleChanges}>
                                             <option value="Work">Work</option>
-                                            <option value="Matrial">Matrial</option>
+                                            <option value="Material">Material</option>
                                             <option value="Cost">Cost</option>
                                         </select>
                                     </div>

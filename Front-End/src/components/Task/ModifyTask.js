@@ -19,7 +19,7 @@ class ModifyTask extends Component {
         }
     }
 
-    handleDateChange = (date) => {//for DATEPICKER
+    handleDateChange = (date) => { //for DATEPICKER
         this.setState({
             startDate: date
         });
@@ -139,14 +139,14 @@ class ModifyTask extends Component {
         )
     }
     renderTeamMembers = () => {
-        const members = this.props.projectInContext.resources.map(resource => {
+        const resources = this.props.projectInContext.resources.map(resource => {
             if (this.searchForAssignement(resource)) {
                 return (
                     <a class="dropdown-item" onClick={() => { this.handleAssign(resource) }}>{resource.name}</a>
                 )
             }
         })
-        return members
+        return resources
     }
     searchForAssignement = (resource) => {
         const assignedResources = this.props.task.assignedResources
@@ -157,7 +157,7 @@ class ModifyTask extends Component {
             return (
                 <div class="dropdown">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Assign member
+                        Assign resource
                     </button>
                     <div class="dropdown-menu">
                         {this.renderTeamMembers()}

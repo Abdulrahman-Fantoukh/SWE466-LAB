@@ -89,7 +89,7 @@ taskRoute.post('/editTask', function (req, res) {
 
 taskRoute.post('/assignResource', function (req, res) {
     assignedResource = {
-        name: req.body.payload.member.name,
+        name: req.body.payload.resource.name,
     }
     newAssignedResources = [...req.body.payload.task.assignedResources, assignedResource]
     mongoose.model("projects").findByIdAndUpdate(req.body.payload.project._id, { $set: { "tasks.$[elem].assignedResources": newAssignedResources } }
@@ -103,7 +103,7 @@ taskRoute.post('/assignResource', function (req, res) {
 
 taskRoute.post('/unAssignResource', function (req, res) {
     const assignedResources = req.body.payload.task.assignedResources
-    const newAssignedResources = assignedResources.filter(member => { return member.email !== req.body.payload.member.email })
+    const newAssignedResources = assignedResources.filter(resource => { return resource._id !== req.body.payload.resource._id })
     mongoose.model("projects").findByIdAndUpdate(req.body.payload.project._id, { $set: { "tasks.$[elem].assignedResources": newAssignedResources } }
         , { arrayFilters: [{ "elem._id": mongoose.Types.ObjectId(req.body.payload.task._id) }], new: true }).then(function (record) {
             res.status(200).send(record)

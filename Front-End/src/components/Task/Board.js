@@ -16,7 +16,6 @@ class Board extends Component {
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
-
         })
     }
     handleDelete = (task_id) => {
@@ -30,7 +29,6 @@ class Board extends Component {
             </button>
             <span className="tooltiptext">Delete Task</span>
             </div>
-            
         )
     }
     renderCreateTaskButton = () => {
@@ -103,6 +101,15 @@ class Board extends Component {
                             {taskStatus}
                         </td>
                         <td>
+                            {task.duration}
+                        </td>
+                        <td>
+                            {task.startDate}
+                        </td>
+                        <td>
+                            {task.endDate}
+                        </td>
+                        <td>
                             {this.renderSubmissionButton(task)}
                         </td>
                         <td>
@@ -135,7 +142,10 @@ class Board extends Component {
                                 <th className="tasksTableHeaderFirst" scope="col" width="70">Task Number</th>
                                 <th scope="col" width="350">Task Name</th>
                                 <th scope="col" width="200">Status</th>
-                                <th></th><th></th><th></th><th className="tasksTableHeaderLast"></th>
+                                <th scope="col" width="100">Duration</th>
+                                <th scope="col" width="100">Start Date</th>
+                                <th scope="col" width="100">Finish Date</th>
+                                    <th></th><th></th><th></th><th className="tasksTableHeaderLast"></th>
                             </tr>
                         </thead>
                         <tbody className="alert-secondary">

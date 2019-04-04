@@ -44,9 +44,10 @@ const rootReducer = (state = initState, action) => {
     }
 
     if (action.type === "REMOVE_RESOURCE") {
-        let newProject = state.projects.find(project => { return action.payload.project._id === project._id })
-        let newProjectsList = state.projects.filter(project => { return action.payload.project._id !== project._id })
-        let newResources = newProject.resources.filter(reaource => { return action.payload.resource.name !== reaource.name });
+        let newProject = action.payload.project
+        console.log(newProject,'EH')
+        let newProjectsList = [...state.projects, newProject]
+        let newResources = newProject.resources.filter(resource => {return action.payload.resource._id === resource._id})
         console.log(newResources, "new Resources")
         newProject = {
             ...newProject,
