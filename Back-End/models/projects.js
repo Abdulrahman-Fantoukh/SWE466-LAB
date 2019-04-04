@@ -25,8 +25,8 @@ const projectsSchema = new schema({
         material: String,
         maxNoOfResources: Number,
         StRate: Number,
-        ovt:String,
-        CostPerUse:String
+        ovt:Number,
+        CostPerUse:Number
     }],
     tasks: [{
         name: String,

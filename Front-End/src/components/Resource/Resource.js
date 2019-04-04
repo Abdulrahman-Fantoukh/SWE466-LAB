@@ -16,9 +16,9 @@ class Resource extends Component {
             else if(resource.kind === "Cost") {rowColor = "task-done"; resourceKind = "Cost"}
             return(
                  <tr className={rowColor + " task taskBorder spaceUnder"}>
-                        <td>
+                        <th id="taskNumber">
                             {resource.name}
-                        </td>
+                        </th>
                         <td>
                             {resourceKind}
                         </td>
@@ -29,7 +29,7 @@ class Resource extends Component {
                             {resource.maxNoOfResources * 100}%
                         </td>
                         <td>
-                            {resource.StRate}
+                            {resource.StRate}$/hr
                         </td>
                         <td>
                             {resource.ovt}
@@ -37,6 +37,9 @@ class Resource extends Component {
                         <td>
                             {resource.CostPerUse}
                         </td>
+                        <td></td>
+                        <td></td>
+                        <td scope="col" width="350"></td>
                         <td id="lastTB">{this.renderDeleteResource(resource)}</td>
                     </tr>
                 )
@@ -75,7 +78,7 @@ class Resource extends Component {
                                     <th scope="col" width="200">St. Rate</th>
                                     <th scope="col" width="200">Ovt.</th>
                                     <th scope="col" width="300">Cost/Use</th>
-                                        <th></th><th></th><th></th><th></th><th></th><th className="tasksTableHeaderLast"></th>
+                                        <th></th><th></th><th></th><th></th><th className="tasksTableHeaderLast"></th>
                                 </tr>
                             </thead>
                             <tbody className="alert-secondary">

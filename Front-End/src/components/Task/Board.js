@@ -6,7 +6,6 @@ import { deleteTask, submitTask } from '../../store/actionCreators/taskActions'
 import TaskDetails from './TaskDetails';
 import ModifyTask from './ModifyTask'
 import Navbar from '../layout/Navbar'
-import { Link } from 'react-router-dom';
 import { normalizeDate } from '../../helper'
 
 class Board extends Component {
@@ -67,7 +66,6 @@ class Board extends Component {
     }
 
     handleTaskSubmission = (task) => {
-
         let payload = {
             task,
             project: this.props.projectInContext,
@@ -82,7 +80,6 @@ class Board extends Component {
             taskLength: tasks.length
         })
     }
-
     renderTasks = () => {
         let number = 0
         let taskList
@@ -113,11 +110,13 @@ class Board extends Component {
                             {endDate}
                         </td>
                         <td>
+                            {this.calculateCost(task)}
+                        </td>
+                        <td>
                             <TaskDetails task={task} number={number} />
                         </td>
                         <td><ModifyTask tasks={tasks} task={task} /></td>
                         <td id="lastTB">{this.renderDeleteTask(task)}</td>
-
                     </tr>
                 )
             })
@@ -128,6 +127,24 @@ class Board extends Component {
         return (
             <img className="noTasks" src={require('../../images/No-Tasks.png')} width="350" height="350" />
         )
+    }
+    calculateCost = (task) => {
+        let cost = 0
+        task.assignedResources.map(resource => {
+            if(resource.ovt <= 0){
+            cost += (resource.StRate * 8 * task.duration) * resource.maxNoOfResources
+            }else {
+                cost += (resource.StRate * 8 * task.duration * resource.ovt) * resource.maxNoOfResources 
+            }
+        })
+        return cost
+    }
+    calculateProjectCost = () => {
+        let cost = 0
+        this.props.projectInContext.tasks.map(task => {
+            cost += this.calculateCost(task)
+        })
+        return cost
     }
 
     render() {
@@ -140,21 +157,33 @@ class Board extends Component {
                         <thead className="alert-secondary" >
                             <tr>
                                 <th className="tasksTableHeaderFirst" scope="col" width="70">Task Number</th>
-                                <th scope="col" width="350">Task Name</th>
-                                <th scope="col" width="200">Status</th>
+                                <th scope="col" width="150">Task Name</th>
+                                <th scope="col" width="100">Status</th>
                                 <th scope="col" width="100">Duration</th>
-                                <th scope="col" width="100">Start Date</th>
-                                <th scope="col" width="100">Finish Date</th>
-                                <th><Link to={{pathname: "/TasksWithCost"}}>Show with Cost</Link></th>
+                                <th scope="col" width="150">Start Date</th>
+                                <th scope="col" width="150">Finish Date</th>
+                                <th scope="col" width="150">Total Cost</th>
                                     <th></th><th></th><th className="tasksTableHeaderLast"></th>
                             </tr>
                         </thead>
                         <tbody className="alert-secondary">
                             {this.renderTasks()}
+                            <tr>
+                                <th className="taskTableFooterFirst" scope="col" width="100">Total Cost</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>{this.calculateProjectCost()}</th>
+                                <th></th>
+                                <th></th>
+                                <th className="taskTableFooterLast"></th>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-                {this.renderCreateTaskButton()}
+                    {this.renderCreateTaskButton()}
                 <div id="footer"></div>
             </div>
 
@@ -185,4 +214,5 @@ const mapDispatchToProps = (dispatch) => {
         submitTask: (payload) => dispatch(submitTask(payload)),
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Board)
+
+export default connect(mapStateToProps,mapDispatchToProps)(Board)

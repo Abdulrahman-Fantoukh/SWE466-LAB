@@ -43,7 +43,7 @@ const rootReducer = (state = initState, action) => {
         }
     }
     if (action.type === "REMOVE_RESOURCE" || action.type==="MODIFY_TASK" || action.type === "DELETE_TASK" || action.type === "CREATE_TASK" || action.type === "ADD_RESOURCE") {
-        const oldProjects = state.projects.filter(project => project._id !== action.payload.PID)
+        const oldProjects = state.projects.filter(project => project._id !== action.payload.res.data._id)
         const newProjects = [...oldProjects, action.payload.res.data]
         console.log(newProjects)
         return state = {

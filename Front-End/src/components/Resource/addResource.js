@@ -7,9 +7,9 @@ class AddResource extends Component {
         super(props)
         this.state = {
             name:"",
-            kind:"",
+            kind:"Work",
             material:"",
-            maxNoOfResources:0,
+            maxNoOfResources:100,
             StRate: "",
             ovt:"",
             CostPerUse:""
@@ -74,27 +74,26 @@ class AddResource extends Component {
                                     <div class="form-group">
                                         <label>Maximum Number Of Resources : </label>
                                         <select name="maxNoOfResources" id="maxNoOfResources" onChange={this.handleChanges} required>
-                                            <option value="0"></option>
-                                            <option value="10">10%</option>
-                                            <option value="20">20%</option>
-                                            <option value="30">30%</option>
-                                            <option value="40">40%</option>
-                                            <option value="50">50%</option>
-                                            <option value="60">60%</option>
-                                            <option value="70">70%</option>
-                                            <option value="80">80%</option>
-                                            <option value="90">90%</option>
                                             <option value="100">100%</option>
+                                            <option value="90">90%</option>
+                                            <option value="80">80%</option>
+                                            <option value="70">70%</option>
+                                            <option value="60">60%</option>
+                                            <option value="50">50%</option>
+                                            <option value="40">40%</option>
+                                            <option value="30">30%</option>
+                                            <option value="20">20%</option>
+                                            <option value="10">10%</option>
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <input type="text" className="form-group" id="StRate" placeholder="Standard Rate" onChange={this.handleChanges} required/>
+                                        <input type="number" className="form-group" id="StRate" placeholder="Standard Rate/Hour" onChange={this.handleChanges} min="0" required/>
                                     </div>
                                     <div className="form-group">
-                                        <input type="text" className="form-group" id="ovt" placeholder="ovt" onChange={this.handleChanges}/>
+                                        <input type="number" className="form-group" id="ovt" placeholder="ovt" min="0" onChange={this.handleChanges}/>
                                     </div>
                                     <div className="form-group">
-                                        <input type="text" className="form-group" id="CostPerUse" placeholder="CostPerUse" onChange={this.handleChanges}/>
+                                        <input type="number" className="form-group" id="CostPerUse" placeholder="CostPerUse" min="0" onChange={this.handleChanges}/>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Add</button>
