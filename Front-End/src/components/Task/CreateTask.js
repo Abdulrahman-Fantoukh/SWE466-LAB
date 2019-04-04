@@ -10,20 +10,23 @@ class CreateTask extends Component {
             name: "",
             startDate: new Date(),
             endDate: new Date(),
-            duration: "",
-            redirect: false
+            duration: 0,
+            redirect: false,
+            durationAlert: <div></div>
         }
       }
 
-      handleStartDateChange = (date) => {   //for DATEPICKER
+    handleStartDateChange = (date) => {   //for DATEPICKER
             this.setState({
-                startDate: date
+                startDate: date,
+                duration: this.convertDuration(this.state.endDate - date)
             });
             console.log(this.state.startDate)
     }
     handleEndDateChange = (date) => {
             this.setState({
-                endDate: date
+                endDate: date,
+                duration: this.convertDuration(date - this.state.startDate)
             });
     }
 
@@ -33,9 +36,28 @@ class CreateTask extends Component {
             [e.target.id]: e.target.value,
         })
     }
-
+    convertDuration = (duration) => {
+        return Math.ceil(((((duration / 1000 ) / 60 ) / 60 ) / 24 ) )
+    }
+    displayDurationAlert = () => {
+        let error = <div className="alert alert-danger" role="alert" onClick={this.closeDurationAlert}>
+                                Invalid duration !
+                        <button type="button" className="close" aria-label="Close" >
+                            <i className="material-icons ">highlight_off</i>
+                        </button>
+                    </div>
+        this.setState({
+            durationAlert:error
+        })
+    }
+    closeDurationAlert = () => {
+        this.setState({
+            durationAlert: <div></div>
+        })
+    }
     handleSubmit = (e) => {
         e.preventDefault()
+        if(this.state.duration < 0){this.displayDurationAlert(); return}
         console.log("in submit")
         let task = {
             name: this.state.name,
@@ -64,6 +86,7 @@ class CreateTask extends Component {
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            {this.state.durationAlert}
                             <div class="modal-body">
                                 <form onSubmit={this.handleSubmit}>
                                     <div class="form-group">
@@ -78,7 +101,7 @@ class CreateTask extends Component {
                                             <DatePicker className="form-control" selected={this.state.endDate} onChange={this.handleEndDateChange} /><br /><br />
                                         </div>
                                         <label className="label" htmlFor="Duration">Duration: </label>
-                                        <input id="duration" onChange={this.handleChanges} required/>
+                                        <input id="duration" value={this.state.duration} readOnly required/>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Create</button>

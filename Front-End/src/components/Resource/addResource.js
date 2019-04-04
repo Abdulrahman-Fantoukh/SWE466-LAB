@@ -74,6 +74,7 @@ class AddResource extends Component {
                                     <div class="form-group">
                                         <label>Maximum Number Of Resources : </label>
                                         <select name="maxNoOfResources" id="maxNoOfResources" onChange={this.handleChanges} required>
+                                            <option value="0"></option>
                                             <option value="10">10%</option>
                                             <option value="20">20%</option>
                                             <option value="30">30%</option>
