@@ -35,7 +35,6 @@ class AddResource extends Component {
             ovt:this.state.ovt,
             CostPerUse:this.state.CostPerUse,
         }
-        console.log(this.props.projectInContext)
         this.props.addResource(resource,this.props.projectInContext, this.props.userInfo)
     }
 
@@ -96,7 +95,7 @@ class AddResource extends Component {
                                         <input type="number" className="form-group" id="CostPerUse" placeholder="CostPerUse" min="0" onChange={this.handleChanges}/>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Add</button>
+                                        <button type="submit" class="btn btn-primary" >Add</button>
                                     </div>
                                 </form>
                             </div>

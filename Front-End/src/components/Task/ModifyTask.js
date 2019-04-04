@@ -61,7 +61,8 @@ class ModifyTask extends Component {
         })
     }
 
-    handleEdit = () => {
+    handleEdit = (e) => {
+        e.preventDefault()
         if(this.state.duration < 0){this.displayDurationAlert(); return}
         const payload = {
             name: this.state.name,
@@ -253,6 +254,7 @@ class ModifyTask extends Component {
                             </div>
                             {this.state.durationAlert}
                             <div class="modal-body">
+                            <form onSubmit={this.handleChange}>
                                 <div class="form-group">
                                     <label for="name">Task name</label>
                                     <input type="text" class="form-control" id="name" placeholder={this.props.task.name} onChange={this.handleChange} required />
@@ -262,14 +264,15 @@ class ModifyTask extends Component {
                                         <label className="label" htmlFor="endDate">End Date: </label>
                                         <DatePicker className="form-control" selected={this.state.endDate} onChange={this.handleEndDateChange} /><br /><br />
                                         <label className="label" htmlFor="Duration">Duration: </label>
-                                        <input id="duration" onChange={this.handleChange} required readOnly value={this.state.duration}/>
+                                        <input id="duration" required readOnly value={this.state.duration}/>
                                     </div>
-                                </div>
-                                <div className="row">
+                                    <div className="row">
                                     <div className="col align-self-end">
-                                        <button className="btn btn-primary btn-sm" onClick={this.handleEdit}>edit task</button>
+                                        <button className="btn btn-primary btn-sm" type="submit">edit task</button>
                                     </div>
-                                </div>
+                                    </div>
+                                    </div>
+                                </form>
                                 <hr />
                                 <div className="row">
                                     <div className="col-12">
@@ -281,7 +284,6 @@ class ModifyTask extends Component {
                                     {this.renderAssignedResources()}
                                 </div>
                                 <hr />
-
                                 {this.renderDependencies()}
                                 <div className="row">
                                     <div className="col-12">
