@@ -49,7 +49,16 @@ class TaskDetails extends Component {
             </div>
         )
     }
-    
+    renderAssignedResources = () => {
+        const assignedResources = this.props.task.assignedResources.map(resource => {
+            return (
+                <div className="col">
+                    <p className="inline" on>{resource.name}</p>
+                </div>
+            )
+        })
+        return assignedResources
+    }
     
     render() {
 
@@ -76,16 +85,11 @@ class TaskDetails extends Component {
                             <div class="modal-body container">
                                 <div className="row">
                                     <div className="col-12">
-                                        <label>Start Date : {sdate[0]} {stime} </label>
-                                    </div>
-                                    <div>
-                                        <label>End Date : {edate[0]} {etime} </label>
+                                        <h5>Assigned Resources: </h5>
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-4">
-                                        <label>Duration: {this.props.task.duration} Days</label>
-                                    </div>
+                                    {this.renderAssignedResources()}
                                 </div>
                                 <hr />
                                 {this.renderDependencies()}
@@ -104,7 +108,7 @@ class TaskDetails extends Component {
 const mapStateToProps = (state) => {
     return {
         userInfo: state.userInfo,
-        projectInContext: state.projectInContext
+        projectInContext: state.projectInContext,
     }
 }
 

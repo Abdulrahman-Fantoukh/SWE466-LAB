@@ -26,7 +26,7 @@ class Resource extends Component {
                             {resource.material}
                         </td>
                         <td>
-                            {resource.maxNoOfResources}
+                            {resource.maxNoOfResources * 100}%
                         </td>
                         <td>
                             {resource.StRate}

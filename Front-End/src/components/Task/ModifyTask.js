@@ -269,13 +269,13 @@ class ModifyTask extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col align-self-end">
-                                        <button className="btn btn-primary btn-sm" onClick={this.handleEdit}>edit task</button>
+                                        <button className="btn btn-primary btn-sm" type="submit">edit task</button>
                                     </div>
                                 </div>
                                 <hr />
                                 <div className="row">
                                     <div className="col-12">
-                                        <h5>Assign members</h5>
+                                        <h5>Assigned Resources</h5>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -289,7 +289,7 @@ class ModifyTask extends Component {
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                                 Tasks
-                                        </button>
+                                            </button>
                                             <div className="dropdown-menu">
                                                 {this.renderTaskDropdown()}
                                             </div>
@@ -316,7 +316,7 @@ const mapDispatchToProps = (dispatch) => {
         setDependancy: (payload) => { dispatch(setDependancy(payload)) },
         editTask: (payload) => { dispatch(editTask(payload)) },
         unAssignResource: (payload) => { dispatch(unAssignResource(payload)) },
-        removeDependency: payload => { dispatch(removeDependency(payload)) },
+        removeDependency: payload => { dispatch(removeDependency(payload)) }
     }
 }
 
