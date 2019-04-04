@@ -6,7 +6,7 @@ import { deleteTask, submitTask } from '../../store/actionCreators/taskActions'
 import TaskDetails from './TaskDetails';
 import ModifyTask from './ModifyTask'
 import Navbar from '../layout/Navbar'
-
+import { normalizeDate } from '../../helper'
 
 class Board extends Component {
     constructor(props) {
@@ -87,6 +87,8 @@ class Board extends Component {
         let taskList
         var tasks = this.props.projectInContext.tasks
         taskList = tasks.map(task => {
+                let startDate = normalizeDate(task.startDate).date[0] + " " + normalizeDate(task.startDate).time
+                let endDate = normalizeDate(task.endDate).date[0] + " " + normalizeDate(task.endDate).time
                 let rowColor = ""
                 let taskStatus = ""
                 if (task.status === "SUBMITTED") { rowColor = "task-done"; taskStatus = "Done" }
@@ -104,10 +106,10 @@ class Board extends Component {
                             {task.duration}
                         </td>
                         <td>
-                            {task.startDate}
+                            {startDate}
                         </td>
                         <td>
-                            {task.endDate}
+                            {endDate}
                         </td>
                         <td>
                             {this.renderSubmissionButton(task)}

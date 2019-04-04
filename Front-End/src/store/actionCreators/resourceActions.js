@@ -21,8 +21,9 @@ export const removeResources = (resource, project) => {
     console.log(resource,"remove action here")
     console.log(project,"OJ")
     return (dispatch, getState) => {
-        const payload = { resource, project }   //Change to resource
+        let payload = { resource, project }   //Change to resource
         axios.post('http://localhost:3333/project/removeResources', { payload }).then((res) => {
+            payload = {...payload, res}
             dispatch({ type: "REMOVE_RESOURCE", payload })
             console.log(res)
         })

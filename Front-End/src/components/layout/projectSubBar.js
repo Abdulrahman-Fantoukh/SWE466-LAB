@@ -15,25 +15,6 @@ class ProjectSubBar extends Component{
         this.setState({ sidebarOpen: open });
     }
     
-    renderProgressBar = () => {
-        let totalTasks = this.props.project.tasks.length
-        let submittedTasks = 0
-        for(let i=0; i<this.props.project.tasks.length; i++){
-            if(this.props.project.tasks[i].status === "SUBMITTED"){
-                submittedTasks++
-            }
-        }
-        let percentage = submittedTasks / totalTasks * 100
-        if(totalTasks === 0){
-            percentage = 0  
-          }
-        let widthValue = percentage
-        return (
-             <div className="progress">
-                <div className="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow='50' aria-valuemin='0' aria-valuemax="100" style={{width: widthValue+'%'}}></div>
-            </div>
-        )
-    }
     render() {
         const project = this.props.project
         return (
@@ -49,9 +30,6 @@ class ProjectSubBar extends Component{
                         <li><Link to="#"><h1>{project.title}</h1></Link></li>
                         <li><Link to={{ pathname: "/home/board", state: { project} }}>Board</Link></li>
                         <li><Link to='/home/resource'>Resources</Link></li>
-                        <li>
-                            <p>Project Progress</p>{this.renderProgressBar()}
-                        </li>
                     </ul>
                 </div>
             </div>
