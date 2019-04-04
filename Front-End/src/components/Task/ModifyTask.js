@@ -223,8 +223,6 @@ class ModifyTask extends Component {
                                 <div class="form-group">
                                     <label for="name">Task name</label>
                                     <input type="text" class="form-control" id="name" placeholder={this.props.task.name} onChange={this.handleChange} required />
-
-
                                     <div className="centered">
                                         <label className="label" htmlFor="startDate">Start Date: </label>
                                         <DatePicker className="form-control" selected={this.state.startDate} onChange={this.handleDateChange} /><br /><br />
@@ -242,7 +240,7 @@ class ModifyTask extends Component {
                                 <hr />
                                 <div className="row">
                                     <div className="col-12">
-                                        <h5>Assign members</h5>
+                                        <h5>Assigned Resources</h5>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -252,14 +250,12 @@ class ModifyTask extends Component {
                                 <hr />
 
                                 {this.renderDependencies()}
-
-
                                 <div className="row">
                                     <div className="col-12">
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                                 Tasks
-                                        </button>
+                                            </button>
                                             <div className="dropdown-menu">
                                                 {this.renderTaskDropdown()}
                                             </div>
@@ -286,7 +282,7 @@ const mapDispatchToProps = (dispatch) => {
         setDependancy: (payload) => { dispatch(setDependancy(payload)) },
         editTask: (payload) => { dispatch(editTask(payload)) },
         unAssignResource: (payload) => { dispatch(unAssignResource(payload)) },
-        removeDependency: payload => { dispatch(removeDependency(payload)) },
+        removeDependency: payload => { dispatch(removeDependency(payload)) }
     }
 }
 

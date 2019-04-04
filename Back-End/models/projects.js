@@ -24,7 +24,7 @@ const projectsSchema = new schema({
         },
         material: String,
         maxNoOfResources: Number,
-        StRate: String,
+        StRate: Number,
         ovt:String,
         CostPerUse:String
     }],
@@ -50,6 +50,15 @@ const projectsSchema = new schema({
         },
         assignedResources: [{
             name: String,
+            kind: {
+                type: String,
+                enum: ["Work", "Material", "Cost"]
+            },
+            material: String,
+            maxNoOfResources: Number,
+            StRate: String,
+            ovt:String,
+            CostPerUse:String
         }],
     }]
 })

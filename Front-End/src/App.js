@@ -14,6 +14,7 @@ import Board from './components/Task/Board';
 import qs from 'query-string'
 import Axios from 'axios';
 import Resource from './components/Resource/Resource';
+import TasksWithCost from './components/Task/TasksWithCost';
 
 class App extends Component {
 
@@ -59,6 +60,7 @@ class App extends Component {
           <Route path='/home/newproject' component={RequireAuth(CreateProject)} />
           <Route path='/home/board' component={RequireAuth(Board)} />
           <Route path='/home/resource' component={RequireAuth(Resource)}/>
+          <Route path='/TasksWithCost' component={RequireAuth(TasksWithCost)}/>
         </Switch>
 
       </div>

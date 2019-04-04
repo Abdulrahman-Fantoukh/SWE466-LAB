@@ -89,8 +89,9 @@ taskRoute.post('/editTask', function (req, res) {
 
 taskRoute.post('/assignResource', function (req, res) {
     assignedResource = {
-        name: req.body.payload.resource.name,
+        ...req.body.payload.resource
     }
+    console.log(assignedResource,"HO")
     newAssignedResources = [...req.body.payload.task.assignedResources, assignedResource]
     mongoose.model("projects").findByIdAndUpdate(req.body.payload.project._id, { $set: { "tasks.$[elem].assignedResources": newAssignedResources } }
         , { arrayFilters: [{ "elem._id": mongoose.Types.ObjectId(req.body.payload.task._id) }], new: true }).then(function (record) {

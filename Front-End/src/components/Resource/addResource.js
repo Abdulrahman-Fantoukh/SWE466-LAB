@@ -62,8 +62,8 @@ class AddResource extends Component {
                                     </div>
                                     <div class="form-group">
                                         <label>Resource type: </label>
-                                        <select name="kind" id="kind" onChange={this.handleChanges}>
-                                            <option value="Work">Work</option>
+                                        <select name="kind" id="kind" onChange={this.handleChanges} required>
+                                            <option value="Work" default>Work</option>
                                             <option value="Material">Material</option>
                                             <option value="Cost">Cost</option>
                                         </select>
@@ -73,7 +73,7 @@ class AddResource extends Component {
                                     </div>
                                     <div class="form-group">
                                         <label>Maximum Number Of Resources : </label>
-                                        <select name="maxNoOfResources" id="maxNoOfResources" onChange={this.handleChanges}>
+                                        <select name="maxNoOfResources" id="maxNoOfResources" onChange={this.handleChanges} required>
                                             <option value="10">10%</option>
                                             <option value="20">20%</option>
                                             <option value="30">30%</option>
@@ -87,7 +87,7 @@ class AddResource extends Component {
                                         </select>
                                     </div>
                                     <div className="form-group">
-                                        <input type="text" className="form-group" id="StRate" placeholder="Standard Rate" onChange={this.handleChanges}/>
+                                        <input type="text" className="form-group" id="StRate" placeholder="Standard Rate" onChange={this.handleChanges} required/>
                                     </div>
                                     <div className="form-group">
                                         <input type="text" className="form-group" id="ovt" placeholder="ovt" onChange={this.handleChanges}/>

@@ -6,10 +6,8 @@ import { deleteTask, submitTask } from '../../store/actionCreators/taskActions'
 import TaskDetails from './TaskDetails';
 import ModifyTask from './ModifyTask'
 import Navbar from '../layout/Navbar'
-import { Link } from 'react-router-dom';
 
-
-class Board extends Component {
+class TasksWithCost extends Component {
     constructor(props) {
         super(props)
     }
@@ -67,7 +65,6 @@ class Board extends Component {
     }
 
     handleTaskSubmission = (task) => {
-
         let payload = {
             task,
             project: this.props.projectInContext,
@@ -82,7 +79,6 @@ class Board extends Component {
             taskLength: tasks.length
         })
     }
-
     renderTasks = () => {
         let number = 0
         let taskList
@@ -111,11 +107,13 @@ class Board extends Component {
                             {task.endDate}
                         </td>
                         <td>
+                            {this.calculateCost(task)}
+                        </td>
+                        <td>
                             <TaskDetails task={task} number={number} />
                         </td>
                         <td><ModifyTask tasks={tasks} task={task} /></td>
                         <td id="lastTB">{this.renderDeleteTask(task)}</td>
-
                     </tr>
                 )
             })
@@ -126,6 +124,9 @@ class Board extends Component {
         return (
             <img className="noTasks" src={require('../../images/No-Tasks.png')} width="350" height="350" />
         )
+    }
+    calculateCost = (task) => {
+        //Calculate cost
     }
 
     render() {
@@ -143,7 +144,7 @@ class Board extends Component {
                                 <th scope="col" width="100">Duration</th>
                                 <th scope="col" width="100">Start Date</th>
                                 <th scope="col" width="100">Finish Date</th>
-                                <th><Link to={{pathname: "/TasksWithCost"}}>Show with Cost</Link></th>
+                                <th scope="col" width="100">Total Cost</th>
                                     <th></th><th></th><th className="tasksTableHeaderLast"></th>
                             </tr>
                         </thead>
@@ -183,4 +184,5 @@ const mapDispatchToProps = (dispatch) => {
         submitTask: (payload) => dispatch(submitTask(payload)),
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Board)
+
+export default connect(mapStateToProps,mapDispatchToProps)(TasksWithCost)
