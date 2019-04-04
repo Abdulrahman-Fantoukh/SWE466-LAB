@@ -254,7 +254,7 @@ class ModifyTask extends Component {
                             </div>
                             {this.state.durationAlert}
                             <div class="modal-body">
-                            <form onSubmit={this.handleChange}>
+                            <form onSubmit={this.handleEdit}>
                                 <div class="form-group">
                                     <label for="name">Task name</label>
                                     <input type="text" class="form-control" id="name" placeholder={this.props.task.name} onChange={this.handleChange} required />

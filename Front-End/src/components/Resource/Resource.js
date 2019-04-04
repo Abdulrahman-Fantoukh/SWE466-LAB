@@ -79,7 +79,7 @@ class Resource extends Component {
                                     <th className="tasksTableHeaderFirst" scope="col" width="70">Resource Name</th>
                                     <th scope="col" width="350">Type (List)</th>
                                     <th scope="col" width="200">Material</th>
-                                    <th scope="col" width="200">Max (No. of Source)</th>
+                                    <th scope="col" width="200">Max (No. of Resource)</th>
                                     <th scope="col" width="200">St. Rate</th>
                                     <th scope="col" width="200">Ovt.</th>
                                     <th scope="col" width="300">Cost/Use</th>
